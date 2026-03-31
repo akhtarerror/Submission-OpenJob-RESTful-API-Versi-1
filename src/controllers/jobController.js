@@ -4,8 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const getAll = async (req, res, next) => {
   try {
     const result = await pool.query('SELECT * FROM jobs ORDER BY created_at DESC');
-    res.json({ status: 'success', data: result.rows });
-  } catch (err) { next(err); }
+res.json({ status: 'success', data: { jobs: result.rows } });  } catch (err) { next(err); }
 };
 
 const getById = async (req, res, next) => {
@@ -21,15 +20,13 @@ const getById = async (req, res, next) => {
 const getByCompany = async (req, res, next) => {
   try {
     const result = await pool.query('SELECT * FROM jobs WHERE company_id = $1', [req.params.companyId]);
-    res.json({ status: 'success', data: result.rows });
-  } catch (err) { next(err); }
+res.json({ status: 'success', data: { jobs: result.rows } });  } catch (err) { next(err); }
 };
 
 const getByCategory = async (req, res, next) => {
   try {
     const result = await pool.query('SELECT * FROM jobs WHERE category_id = $1', [req.params.categoryId]);
-    res.json({ status: 'success', data: result.rows });
-  } catch (err) { next(err); }
+res.json({ status: 'success', data: { jobs: result.rows } });  } catch (err) { next(err); }
 };
 
 const create = async (req, res, next) => {

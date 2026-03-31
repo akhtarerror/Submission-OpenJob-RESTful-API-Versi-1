@@ -4,8 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const getAll = async (req, res, next) => {
   try {
     const result = await pool.query('SELECT * FROM companies ORDER BY created_at DESC');
-    res.json({ status: 'success', data: result.rows });
-  } catch (err) { next(err); }
+    res.json({ status: 'success', data: { companies: result.rows } });  } catch (err) { next(err); }
 };
 
 const getById = async (req, res, next) => {
