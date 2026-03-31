@@ -10,13 +10,13 @@ const errorHandler = (err, req, res, next) => {
 
   if (err.status) {
     return res.status(err.status).json({
-      status: err.status < 500 ? 'failed' : 'error',
+      status: err.status < 500 ? 'failed' : 'failed',
       message: err.message,
     });
   }
 
   res.status(500).json({
-    status: 'error',
+    status: 'failed',
     message: 'Internal Server Error',
   });
 };
